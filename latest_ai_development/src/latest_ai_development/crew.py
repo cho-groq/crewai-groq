@@ -1,5 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import FileReadTool
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -14,20 +15,37 @@ class LatestAiDevelopment():
     # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
+    file_read_tool = FileReadTool(file_path='./papers')
 
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def researcher(self) -> Agent:
+    def reader_summarizer(self) -> Agent:
         return Agent(
-            config=self.agents_config['researcher'],
+            config=self.agents_config['reader_summarizer'],
+            verbose=True,
+            tools=[file_read_tool]
+        )
+
+    @agent
+    def quote_finder(self) -> Agent:
+        return Agent(
+            config=self.agents_config['quote_finder'],
+            verbose=True,
+            tools=[file_read_tool]
+        )
+
+    @agent
+    def quote_rater(self) -> Agent:
+        return Agent(
+            config=self.agents_config['quote_rater'],
             verbose=True
         )
 
     @agent
-    def reporting_analyst(self) -> Agent:
+    def final_editor(self) -> Agent:
         return Agent(
-            config=self.agents_config['reporting_analyst'],
+            config=self.agents_config['final_editor'],
             verbose=True
         )
 
@@ -35,16 +53,31 @@ class LatestAiDevelopment():
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def research_task(self) -> Task:
+    def summary_task(self) -> Task:
         return Task(
-            config=self.tasks_config['research_task'],
+            config=self.tasks_config['summary_task'],
+            output_file='summary.md'
         )
 
     @task
-    def reporting_task(self) -> Task:
+    def quote_extraction_task(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_task'],
-            output_file='report.md'
+            config=self.tasks_config['quote_extraction_task'],
+            output_file='quotes_raw.md'
+        )
+
+    @task
+    def quote_rating_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['quote_rating_task'],
+            output_file='quotes_rated.md'
+        )
+
+    @task
+    def final_quote_selection_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['final_quote_selection_task'],
+            output_file='quotes_final.md'
         )
 
     @crew
@@ -56,7 +89,7 @@ class LatestAiDevelopment():
         return Crew(
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator
-            process=Process.sequential,
+            process=Process.sequential, # the order in which you make the tasks matter
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )

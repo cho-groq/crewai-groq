@@ -1,17 +1,38 @@
-research_task:
+summary_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Read and analyze this research paper, then extract key insights 
+    related to {topic} and summarize them in a structured and concise format.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    A well-organized summary covering the main points, key findings, and essential takeaways 
+    from the research papers, formatted in markdown.
+  agent: reader_summarizer
 
-reporting_task:
+quote_extraction_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Identify and extract the most relevant and impactful quotes from research papers related to {topic}.
+    Focus on quotes that clearly convey important findings or arguments.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A list of 10-15 key quotes with proper attribution.
+  context:
+    - pdf_to_text
+  agent: quote_finder
+
+quote_rating_task:
+  description: >
+    Evaluate the relevance, clarity, and impact of the extracted quotes.
+    Assign each quote a rating from 1 to 10 based on its usefulness, clarity, and credibility.
+  expected_output: >
+    A list of rated quotes, each with its respective score (1-10).
+  context:
+    - quote_extraction_task
+  agent: quote_rater
+
+final_quote_selection_task:
+  description: >
+    Curate and refine the best quotes by selecting only those rated 5 or higher.
+    Organize them in descending order from the highest-rated to the lowest-rated.
+  expected_output: >
+    A finalized and structured list of the most relevant quotes, ranked from highest to lowest rating.
+  context:
+    - quote_rating_task
+  agent: final_editor
