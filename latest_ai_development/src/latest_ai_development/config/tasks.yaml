@@ -1,3 +1,10 @@
+pdf_to_txt:
+  description: >
+    Turn this pdf into a txt file.
+  expected_output: >
+    The exact text from the pdf.
+  agent: pdf_to_txt
+
 summary_task:
   description: >
     Read and analyze this research paper, then extract key insights 
@@ -13,8 +20,6 @@ quote_extraction_task:
     Focus on quotes that clearly convey important findings or arguments.
   expected_output: >
     A list of 10-15 key quotes with proper attribution.
-  context:
-    - pdf_to_text
   agent: quote_finder
 
 quote_rating_task:
