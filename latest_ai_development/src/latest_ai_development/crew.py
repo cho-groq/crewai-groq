@@ -1,29 +1,18 @@
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import FileReadTool
-from .tools.custom_tool import PDFTool
-
-# If you want to run a snippet of code before or after the crew starts,
-# you can use the @before_kickoff and @after_kickoff decorators
-# https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
+from latest_ai_development.tools.custom_tool import PDFTool # what is the correct custom import statment if not this
 
 @CrewBase
 class LatestAiDevelopment():
     """LatestAiDevelopment crew"""
-
-    # Learn more about YAML configuration files here:
-    # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
-    # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml' 
 
-    # If you would like to add tools to your agents, you can learn more about it here:
-    # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
     def pdf_to_txt(self) -> Agent:
         return Agent(
             config=self.agents_config['pdf_to_txt'],
-            verbose=True,
+            verbose=True,            
             tools=[PDFTool()]
         )
     
@@ -31,16 +20,14 @@ class LatestAiDevelopment():
     def reader_summarizer(self) -> Agent:
         return Agent(
             config=self.agents_config['reader_summarizer'],
-            verbose=True,
-            tools=[FileReadTool(file_path='./papers/output')]
+            verbose=True
         )
 
     @agent
     def quote_finder(self) -> Agent:
         return Agent(
             config=self.agents_config['quote_finder'],
-            verbose=True,
-            tools=[FileReadTool(file_path='./papers/output')]
+            verbose=True
         )
 
     @agent
@@ -64,8 +51,8 @@ class LatestAiDevelopment():
     @task
     def pdf_to_txt_task(self) -> Task:
         return Task(
-            config=self.tasks_config['pdf_to_txt_task'],
-            output_file='./papers/output.txt'
+            config=self.tasks_config['pdf_to_txt_task']
+            # output_file='./papers/output.txt'
         )
     
     @task

@@ -20,10 +20,13 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 (then make a new terminal to refresh it)
 
 cd latest_ai_development folder
-install crew
+
+## install crew
 
 uv tool install crewai
 pip install 'crewai[tools]'
 crewai run
 
 note: also maybe have a chat agent
+
+source .venv/bin/activate

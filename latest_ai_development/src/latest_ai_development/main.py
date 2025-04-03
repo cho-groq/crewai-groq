@@ -18,12 +18,15 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'AI LLMs',
-        'current_year': str(datetime.now().year)
+        "file_path": '../papers/1912.01703v1.pdf',
+        'topic': 'AI LLMs'
     }
+    print("DEBUG: Inputs passed to kickoff:", inputs)  # Debugging
     
     try:
+        
         LatestAiDevelopment().crew().kickoff(inputs=inputs)
+        
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
@@ -33,6 +36,7 @@ def train():
     Train the crew for a given number of iterations.
     """
     inputs = {
+        "file_path": './papers/1912.01703v1.pdf',
         "topic": "AI LLMs"
     }
     try:
@@ -56,8 +60,8 @@ def test():
     Test the crew execution and returns the results.
     """
     inputs = {
+        "file_path": './papers/1912.01703v1.pdf',
         "topic": "AI LLMs",
-        "current_year": str(datetime.now().year)
     }
     try:
         LatestAiDevelopment().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
