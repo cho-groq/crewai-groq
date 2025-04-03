@@ -18,7 +18,7 @@ def run():
     Run the crew.
     """
     inputs = {
-        "file_path": '../papers/1912.01703v1.pdf',
+        "file_path": 'latest_ai_development/papers/1912.01703v1.pdf',
         'topic': 'AI LLMs'
     }
     print("DEBUG: Inputs passed to kickoff:", inputs)  # Debugging

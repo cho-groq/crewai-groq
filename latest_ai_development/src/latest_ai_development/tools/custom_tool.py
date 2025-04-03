@@ -19,8 +19,6 @@ class PDFTool(BaseTool):
         print(f"DEBUG: Processing PDF at {file_path}")  # Debugging
         # Load the PDF
         print(file_path)
-        # if file_path is None:
-        #     file_path = '1912.01703v1.pdf'
         reader = PdfReader(file_path)
         
         # Extract text from all pages

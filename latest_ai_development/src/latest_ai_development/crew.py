@@ -1,6 +1,6 @@
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
-from latest_ai_development.tools.custom_tool import PDFTool # what is the correct custom import statment if not this
+from latest_ai_development.tools.custom_tool import PDFTool
 
 @CrewBase
 class LatestAiDevelopment():
