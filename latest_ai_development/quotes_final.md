@@ -1,0 +1,12 @@
+The finalized and structured list of the most relevant quotes, ranked from highest to lowest rating, is as follows:
+1. Score: 9 - "PyTorch is a machine learning library that shows that these two goals are in fact compatible: it provides an imperative and Pythonic programming style that supports code as a model, makes debugging easy and is consistent with other popular scientific computing libraries, while remaining efficient and supporting hardware accelerators such as GPUs." - Adam Paszke, et al.
+2. Score: 9 - "Be Pythonic: Data scientists are familiar with the Python language, its programming model, and its tools. PyTorch should be a first-class member of that ecosystem." - Adam Paszke, et al.
+3. Score: 9 - "Put researchers first: PyTorch strives to make writing models, data loaders, and optimizers as easy and productive as possible." - Adam Paszke, et al.
+4. Score: 9 - "PyTorch has become a popular tool in the deep learning research community by combining a focus on usability with careful performance considerations." - Adam Paszke, et al.
+5. Score: 8 - "Deep learning frameworks have often focused on either usability or speed, but not both." - Adam Paszke, et al.
+6. Score: 8 - "PyTorch builds on these trends by providing an array-based programming model accelerated by GPUs and differentiable via automatic differentiation integrated in the Python ecosystem." - Adam Paszke, et al.
+7. Score: 8 - "Provide pragmatic performance: To be useful, PyTorch needs to deliver compelling performance, although not at the expense of simplicity and ease of use." - Adam Paszke, et al.
+8. Score: 8 - "PyTorch uses the operator overloading approach, which builds up a representation of the computed function every time it is executed." - Adam Paszke, et al.
+9. Score: 8 - "PyTorch can be easily extended to perform forward-mode differentiation using array-level dual numbers." - Adam Paszke, et al.
+10. Score: 8 - "PyTorch maintains a strict separation between its control and data flow." - Adam Paszke, et al.
+11. Score: 8 - "PyTorch is designed to execute operators asynchronously on GPU by leveraging the CUDA stream mechanism to queue CUDA kernel invocations to the GPUs hardware FIFO." - Adam Paszke, et al.

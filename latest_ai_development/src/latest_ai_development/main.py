@@ -18,8 +18,8 @@ def run():
     Run the crew.
     """
     inputs = {
-        "file_path": 'latest_ai_development/papers/1912.01703v1.pdf',
-        'topic': 'AI LLMs'
+        "file_path": 'src/latest_ai_development/papers/1912.01703v1.pdf', # Change the pdf name if needed
+        'topic': 'AI LLMs' # Change the topic/argument you want to search for in the PDF
     }
     print("DEBUG: Inputs passed to kickoff:", inputs)  # Debugging
     

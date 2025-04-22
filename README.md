@@ -23,10 +23,11 @@ cd latest_ai_development folder
 
 ## install crew
 
+cd latest_ai_development
 uv tool install crewai
 pip install 'crewai[tools]'
 crewai run
 
 note: also maybe have a chat agent
 
-source .venv/bin/activate
+source .venv/bin/activate (optional, if you want a virtual env)
