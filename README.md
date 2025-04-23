@@ -25,9 +25,12 @@ cd latest_ai_development folder
 
 cd latest_ai_development
 uv tool install crewai
+uv pip install langchain-groq python-dotenv
 pip install 'crewai[tools]'
 crewai run
 
 note: also maybe have a chat agent
 
 source .venv/bin/activate (optional, if you want a virtual env)
+
+this crewai chatgpt assistant was helpful: https://chatgpt.com/g/g-qqTuUWsBY-crewai-assistant

@@ -47,3 +47,11 @@ final_quote_selection_task:
   context:
     - quote_rating_task
   agent: final_editor
+
+chat_interface_task:
+  description: >
+    Now that the summary and quotes are complete, interact with the user and answer any questions they have about the research paper.
+    Use the summary, key quotes, and paper content as context when answering.
+  expected_output: >
+    A dynamic conversation where the user can ask questions and receive helpful answers based on the research content.
+  agent: chat_analyst

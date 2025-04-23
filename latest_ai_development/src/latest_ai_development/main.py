@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 import sys
 import warnings
-
+import os
 from datetime import datetime
-
+from dotenv import load_dotenv
 from latest_ai_development.crew import LatestAiDevelopment
-
+from langchain_groq import ChatGroq
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
 # This main file is intended to be a way for you to run your
 # crew locally, so refrain from adding unnecessary logic into this file.
 # Replace with inputs you want to test with, it will automatically
 # interpolate any tasks and agents information
+load_dotenv()
 
 def run():
     """
@@ -25,8 +26,42 @@ def run():
     
     try:
         
-        LatestAiDevelopment().crew().kickoff(inputs=inputs)
-        
+        # Step 1: Run the Crew
+        LatestAiDevelopment().crew().kickoff(inputs=inputs) 
+
+        # Step 2: Launch interactive chat
+        print("\n🎤 Crew run complete! Starting interactive chat...\n")
+
+        llm = ChatGroq(
+            api_key=os.getenv("GROQ_API_KEY"),
+            model_name=os.getenv("MODEL")
+        )
+                
+        context = {
+            "summary": open("summary.md").read(),
+            "quotes": open("quotes_final.md").read()
+        }
+
+        # Format the context into a base prompt
+        base_prompt = (
+            "You are an expert assistant familiar with the following research paper.\n\n"
+            "### Summary:\n"
+            f"{context['summary']}\n\n"
+            "### Quotes:\n"
+            f"{context['quotes']}\n\n"
+            "Answer the user's questions clearly and helpfully using this information.\n"
+        )
+
+        while True:
+            user_input = input("🧑‍💻 Ask a question: ")
+            if user_input.lower() in ["exit", "quit"]:
+                print("👋 Exiting chat.")
+                break
+
+            prompt = base_prompt + f"\nUser: {user_input}\nAssistant:"
+            response = llm.invoke(prompt)
+            print(f"\n🤖 {response.content.strip()}\n")
+            
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 

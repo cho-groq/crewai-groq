@@ -97,3 +97,10 @@ class LatestAiDevelopment():
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
+    @agent
+    def chat_analyst(self) -> Agent:
+        return Agent(
+            config=self.agents_config['chat_analyst'],
+            verbose=True
+        )
+

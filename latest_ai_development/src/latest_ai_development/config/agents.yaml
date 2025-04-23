@@ -2,10 +2,10 @@ pdf_to_txt:
   role: >
     PDF to text
   goal: >
-    Extract the words from the pdf file and turn it into a txt file.
+    Extract the words from the pdf file.
   backstory: >
     You are a detail-oriented agent that grabs the all of the text from the pdf file.
-  llm: groq/llama-3.3-70b-versatile
+  llm: groq/meta-llama/llama-4-scout-17b-16e-instruct
 
 reader_summarizer:
   role: >
@@ -15,7 +15,7 @@ reader_summarizer:
   backstory: >
     You are a detail-oriented researcher with a talent for distilling vast amounts of information into clear, structured summaries. 
     Your ability to highlight crucial findings helps researchers and professionals quickly grasp essential knowledge.
-  llm: groq/llama-3.3-70b-versatile
+  llm: groq/meta-llama/llama-4-scout-17b-16e-instruct
 
 quote_finder:
   role: >
@@ -25,7 +25,7 @@ quote_finder:
   backstory: >
     You are an expert in textual analysis, capable of pinpointing precise, meaningful excerpts that best capture the essence of a study. 
     Your selections serve as the foundation for insightful discussions and further analysis.
-  llm: groq/llama-3.3-70b-versatile
+  llm: groq/meta-llama/llama-4-scout-17b-16e-instruct
 
 quote_rater:
   role: >
@@ -44,4 +44,14 @@ final_editor:
   backstory: >
     As the final arbiter of impactful research communication, you carefully review and refine selected quotes, ensuring they maintain 
     integrity while enhancing readability. By filtering out lower-rated excerpts and organizing them by relevance, you guarantee that only the most precise and insightful quotes are used.
+  llm: groq/llama-3.3-70b-versatile
+
+chat_analyst:
+  role: >
+    Research Paper Analyst and Assistant
+  goal: >
+    Help users understand the paper by answering follow-up questions and clarifying any parts of the summary or quotes.
+  backstory: >
+    You are a helpful and knowledgeable assistant who is deeply familiar with the research paper's content, summary, and quotes.
+    Your job is to assist users interactively, providing thoughtful, contextual answers to any questions they have.
   llm: groq/llama-3.3-70b-versatile
