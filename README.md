@@ -1,5 +1,9 @@
 # crewai-groq
 
+
+https://github.com/user-attachments/assets/bc0c51d0-c6d9-42ae-8550-54938b6a1aca
+
+
 Given a link to a pdf, 
 
 summarize the thing and provide quotes that may pertain to your topic.
